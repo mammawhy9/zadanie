@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="container col-lg-1 col-centered">
+
+{% if user.id %}
+<h1>Edit company</h1>
+{% else %}
+<h1>Add company</h1>
+{% endif %}
+
+<form action="{{ action }}" method="POST">
+  {% csrf_token %}
+  {% if form.non_field_errors %}
+    <ul>
+      {% for error in form.non_field_errors %}
+        <li>{{ error }}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+  {% for field in form %}
+  <div id="{{ field.auto_id }}_container">
+    {{ field.help_text }}
+    <div>
+      {{ field.label_tag }} {{ field }}
+    </div>
+    <div id="{{ field.auto_id }}_errors">
+      {{ field.errors }}
+    </div>
+  </div>
+  {% endfor %}
+
+  <input id="save_user" type="submit" value="Save" />
+</form>
+
+{% if company.id %}
+<a href="{% url "company-edit" pk=company.id %}">
+  Edit Company
+</a>
+<a href="{% url "company-delete" pk=company.id %}">Delete</a>
+{% endif %}
+
+<a href="{% url "company-list" %}" class="btn btn-primary btn-md">Back to list</a>
+    </div>
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="container col-lg-1 col-centered">
+<h1>Companies</h1>
+
+<ul>
+  {% for company in object_list %}
+    <li class="company">
+      {{ company }} {{ company.email }}
+      (<a href="{% url 'company-edit' pk=company.id %}">edit</a>)
+
+  {% if company.id %}
+<a href="{% url 'company-delete' pk=company.id %}" class="btn-primary button btn-danger btn-sm">Delete</a>
+{% endif %}
+    </li>
+
+<form action="{{ action }}" method="POST">
+  {% endfor %}
+</ul>
+
+<a href="{% url "company-new" %}" class="button btn-primary btn-lg">add company</a>
+    </div>
+{% endblock %}
