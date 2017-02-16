@@ -1,11 +1,7 @@
 from django.shortcuts import render
 from django.core.urlresolvers import reverse
 from .forms import *
-from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
-
-from django.contrib.auth.decorators import login_required
-from django.utils.decorators import method_decorator
-from django.core.exceptions import PermissionDenied
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 
 from .models import User, Company
 

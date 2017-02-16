@@ -14,6 +14,15 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
+            name='Company',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('name', models.CharField(max_length=255)),
+                ('address', models.CharField(max_length=255)),
+                ('email', models.EmailField(unique=True, max_length=254, blank=True)),
+            ],
+        ),
+        migrations.CreateModel(
             name='User',
             fields=[
                 ('user_ptr', models.OneToOneField(parent_link=True, auto_created=True, primary_key=True, serialize=False, to=settings.AUTH_USER_MODEL)),
@@ -27,5 +36,9 @@ class Migration(migrations.Migration):
             managers=[
                 ('objects', django.contrib.auth.models.UserManager()),
             ],
+        ),
+        migrations.AlterUniqueTogether(
+            name='company',
+            unique_together=set([('name', 'address')]),
         ),
     ]

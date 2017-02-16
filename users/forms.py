@@ -14,6 +14,7 @@ class UserForm(forms.ModelForm):
         model = User
         fields = "__all__"
         exclude =[]
+
     def __init__(self, *args, **kwargs):
 
         if kwargs.get('instance'):
@@ -32,6 +33,7 @@ class UserForm(forms.ModelForm):
 
         return self.cleaned_data
 
+
 class CompanyForm(forms.ModelForm):
     confirm_email = forms.EmailField(
         label="Confirm email",
@@ -42,6 +44,7 @@ class CompanyForm(forms.ModelForm):
         model = Company
         fields = "__all__"
         exclude =[]
+
     def __init__(self, *args, **kwargs):
 
         if kwargs.get('instance'):
